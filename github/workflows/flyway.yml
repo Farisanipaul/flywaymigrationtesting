@@ -17,8 +17,7 @@ jobs:
         run: sudo apt-get install -y openjdk-11-jdk
 
       - name: Download, Unzip Flyway
-        run: wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.5.6/flyway-commandline-8.5.6-linux-x64.tar.gz | tar xvz
-          sudo mv flyway-8.5.6 /opt/flyway
+        run: wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.5.6/flyway-commandline-8.5.6-linux-x64.tar.gz | tar xvz -C /opt/
 
       - name: Configuring Flyway on aws EC2
         run: cd /opt/flyway/conf
