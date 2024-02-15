@@ -30,6 +30,17 @@ jobs:
 
     steps:
 
+      - name: Fetch SSH Public Key from GitHub Secrets
+        run: echo "${{ secrets.SSH_KEY }}" > flywaykey.pub
+
+      - name: Move SSH Public Key to ~/.ssh directory
+        run: mv flywaykey.pub ~/.ssh/    
+
+      -name: Copy migration Files from Git to Flyway Folder
+       run: |
+          git clone "${{secrets.SSH_REPO}}" /tmp/migration_scripts
+          cp -r /tmp/migration_scripts/sql/* /opt/flyway/sql/
+
       - name: Run Flyway Info
         run: |
           cd /opt/flyway
