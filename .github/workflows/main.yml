@@ -55,6 +55,7 @@ jobs:
 
       - name: Copy migration Files from Git to Flyway Folder
         run: |
+          ls -l sql
           # git clone "https://github.com/Farisanipaul/flywaymigrationtesting.git" 
           cp sql/* /opt/flyway/sql/
 
