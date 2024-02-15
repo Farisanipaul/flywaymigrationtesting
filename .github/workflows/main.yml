@@ -41,21 +41,21 @@ jobs:
           echo "Working from here!!"
 
 
-      - name: Setup the config file inside the .ssh folder
-        run: |
-          cd ~/.ssh
-          echo "Host git" >> config
-          echo "    HostName github.com" >> config
-          echo "    User git" >> config
-          echo "    IdentityFile flywaykey.pub" >> config
-          chmod 600 flywaykey.pub
+      # - name: Setup the config file inside the .ssh folder
+      #   run: |
+      #     cd ~/.ssh
+      #     echo "Host git" >> config
+      #     echo "    HostName github.com" >> config
+      #     echo "    User git" >> config
+      #     echo "    IdentityFile flywaykey.pub" >> config
+      #     chmod 600 flywaykey.pub
 
       # - name: Move SSH Public Key to ~/.ssh directory
       #   run: mv flywaykey.pub ~/.ssh/
 
       - name: Copy migration Files from Git to Flyway Folder
         run: |
-          git clone "https://github.com/Farisanipaul/flywaymigrationtesting.git" 
+          # git clone "https://github.com/Farisanipaul/flywaymigrationtesting.git" 
           cp -r /flywaymigrationtesting/sql/* /opt/flyway/sql/
 
       - name: Run Flyway Info
