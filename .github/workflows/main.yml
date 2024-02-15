@@ -37,11 +37,13 @@ jobs:
 
       - name: Setup the config file inside the .ssh folder
         run: |
-          echo "Host git" >> /home/ubuntu/.ssh/config
-          echo "    HostName github.com" >> /home/ubuntu/.ssh/config
-          echo "    User git" >> /home/ubuntu/.ssh/config
-          echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> /home/ubuntu/.ssh/config
+          cd .ssh
+          echo "Host git" >> config
+          echo "    HostName github.com" >> config
+          echo "    User git" >> config
+          echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> config
           chmod 600 /home/ubuntu/.ssh/flywaykey.pub
+          cd /home/ubuntu/
 
       # - name: Move SSH Public Key to ~/.ssh directory
       #   run: mv flywaykey.pub ~/.ssh/
