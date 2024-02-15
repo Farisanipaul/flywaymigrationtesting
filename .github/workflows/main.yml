@@ -37,7 +37,7 @@ jobs:
 
       - name: Setup the config file inside the .ssh folder
         run: |
-          sudo cd ~/.ssh
+          cd ~/.ssh
           echo "Host git" >> config
           echo "    HostName github.com" >> config
           echo "    User git" >> config
