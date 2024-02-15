@@ -5,14 +5,17 @@ on:
 
 jobs:
   flyway_migration:
-    runs-on: runner1
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Install OpenJDK
-        run: sudo apt-get install -y openjdk-11-jdk
+        run: | 
+            sudo apt-get update
+            sudo apt-get install -y openjdk-11-jdk
+
 
       - name: Download and Unzip Flyway
         run: |
