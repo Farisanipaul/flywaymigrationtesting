@@ -1,12 +1,10 @@
-name: Flyway Migration
-
 on:
   push:
     branches:
-      - main
+      - main 
 
 jobs:
-  migrate:
+  flyway_migration:
     runs-on: self-hosted
 
     steps:
@@ -22,6 +20,11 @@ jobs:
           sudo mv flyway-8.5.6 /opt/flyway
           echo "Successfully updated the flyway download"
 
+  migrate:
+    needs: flyway_migration
+    runs-on: self-hosted
+
+    steps:
       - name: Configure Flyway on AWS EC2
         run: |
           cd /opt/flyway/conf
