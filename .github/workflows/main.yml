@@ -47,7 +47,7 @@ jobs:
           echo "Host git" >> config
           echo "    HostName github.com" >> config
           echo "    User git" >> config
-          echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> config
+          echo "    IdentityFile flywaykey.pub" >> config
           chmod 600 flywaykey.pub
 
       # - name: Move SSH Public Key to ~/.ssh directory
