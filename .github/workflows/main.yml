@@ -34,8 +34,8 @@ jobs:
 
       - name: Copy migration Files from Git to Flyway Folder
         run: |
-          ssh -o "${{secrets.SSH_REPO}}" "/tmp/migration_scripts"
-          cp -r /tmp/migration_scripts/sql/* /opt/flyway/sql/
+          ssh -o "${{secrets.SSH_REPO}}" 
+          cp -r /flywaymigrationtesting/sql/* /opt/flyway/sql/
 
       - name: Run Flyway Info
         run: |
