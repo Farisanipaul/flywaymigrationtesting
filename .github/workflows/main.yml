@@ -6,16 +6,14 @@ on:
 jobs:
   flyway_migration:
     runs-on: self-hosted
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Install OpenJDK
         run: | 
-            sudo apt-get update
-            sudo apt-get install -y openjdk-11-jdk
-
+          sudo apt-get update
+          sudo apt-get install -y openjdk-11-jdk
 
       - name: Download and Unzip Flyway
         run: |
@@ -27,17 +25,15 @@ jobs:
   migrate:
     needs: flyway_migration
     runs-on: self-hosted
-
     steps:
-
       - name: Fetch SSH Public Key from GitHub Secrets
         run: echo "${{ secrets.SSH_KEY }}" > flywaykey.pub
 
       - name: Move SSH Public Key to ~/.ssh directory
         run: mv flywaykey.pub ~/.ssh/    
 
-      -name: Copy migration Files from Git to Flyway Folder
-       run: |
+      - name: Copy migration Files from Git to Flyway Folder
+        run: |
           ssh -o "${{secrets.SSH_REPO}}" /tmp/migration_scripts
           cp -r /tmp/migration_scripts/sql/* /opt/flyway/sql/
 
