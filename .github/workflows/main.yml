@@ -28,21 +28,14 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Configure Flyway on AWS EC2
-        run: |
-          cd /opt/flyway/conf
-          touch flyway.conf
-          echo "flyway.url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" >> flyway.conf
-          echo "flyway.user=${{ secrets.DB_BUILD_USERNAME }}" >> flyway.conf
-          echo "flyway.password=${{ secrets.DB_BUILD_PASSWORD }}" >> flyway.conf
 
       - name: Run Flyway Info
         run: |
           cd /opt/flyway
-          ./flyway info
+          ./flyway -url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true; -user=${{ secrets.DB_BUILD_USERNAME }} -password=${{ secrets.DB_BUILD_PASSWORD }} info
         continue-on-error: true
 
       - name: Run Flyway Migrate
         run: |
           cd /opt/flyway
-          ./flyway migrate
+          ./flyway -url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true; -user=${{ secrets.DB_BUILD_USERNAME }} -password=${{ secrets.DB_BUILD_PASSWORD }} migrate
