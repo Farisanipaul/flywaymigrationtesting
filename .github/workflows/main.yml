@@ -32,9 +32,18 @@ jobs:
       - name: Move SSH Public Key to ~/.ssh directory
         run: mv flywaykey.pub ~/.ssh/    
 
+      - name: Setup the config file inside the .ssh folder first
+        run: |
+         echo "Host git" >> /home/ubuntu/.ssh/config
+         echo "    HostName github.com" >> /home/ubuntu/.ssh/config
+         echo "    User git" >> /home/ubuntu/.ssh/config
+         echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> /home/ubuntu/.ssh/config
+         chmod 600 flywaykey.pub
+         ssh git
+
       - name: Copy migration Files from Git to Flyway Folder
         run: |
-          ssh "${{secrets.SSH_REPO}}" 
+          git clone "${{secrets.SSH_REPO}}" 
           cp -r /flywaymigrationtesting/sql/* /opt/flyway/sql/
 
       - name: Run Flyway Info
