@@ -65,10 +65,16 @@ jobs:
       - name: Run Flyway Info
         run: |
           cd /opt/flyway
-          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;databaseName=${{ secrets.DB_SCHEMA }};encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" baseline info
+          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;databaseName=${{ secrets.DB_SCHEMA }};encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" info
         continue-on-error: true
+
+      - name: Run Flyway Baseline
+        run: |
+          cd /opt/flyway
+          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;databaseName=${{ secrets.DB_SCHEMA }};encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" baseline
+        continue-on-error: true        
 
       - name: Run Flyway Migrate
         run: |
           cd /opt/flyway
-          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;databaseName=${{ secrets.DB_SCHEMA }};encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" baseline migrate
+          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;databaseName=${{ secrets.DB_SCHEMA }};encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" migrate
