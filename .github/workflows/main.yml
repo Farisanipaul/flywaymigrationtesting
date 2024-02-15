@@ -40,12 +40,12 @@ jobs:
 
       - name: Setup the config file inside the .ssh folder
         run: |
-         echo "Host git" >> /home/ubuntu/.ssh/config
-         echo "    HostName github.com" >> /home/ubuntu/.ssh/config
-         echo "    User git" >> /home/ubuntu/.ssh/config
-         echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> /home/ubuntu/.ssh/config
-         chmod 600 /home/ubuntu/.ssh/flywaykey.pub
-         ssh git
+          echo "Host git" >> /home/ubuntu/.ssh/config
+          echo "    HostName github.com" >> /home/ubuntu/.ssh/config
+          echo "    User git" >> /home/ubuntu/.ssh/config
+          echo "    IdentityFile /home/ubuntu/.ssh/flywaykey.pub" >> /home/ubuntu/.ssh/config
+          chmod 600 /home/ubuntu/.ssh/flywaykey.pub
+
 
       - name: Copy migration Files from Git to Flyway Folder
         run: |
