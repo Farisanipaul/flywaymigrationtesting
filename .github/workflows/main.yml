@@ -36,7 +36,10 @@ jobs:
           fi
 
       - name: Move SSH Public Key to ~/.ssh directory
-        run: mv flywaykey.pub ~/.ssh/          
+        run: |
+          mv flywaykey.pub ~/.ssh/  
+          echo "Working from here!!"
+
 
       - name: Setup the config file inside the .ssh folder
         run: |
