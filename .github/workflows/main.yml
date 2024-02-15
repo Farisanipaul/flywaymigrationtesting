@@ -33,10 +33,10 @@ jobs:
       - name: Run Flyway Info
         run: |
           cd /opt/flyway
-          ./flyway -url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true; -user=${{ secrets.DB_BUILD_USERNAME }} -password=${{ secrets.DB_BUILD_PASSWORD }} info
+          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" info
         continue-on-error: true
 
       - name: Run Flyway Migrate
         run: |
           cd /opt/flyway
-          ./flyway -url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true; -user=${{ secrets.DB_BUILD_USERNAME }} -password=${{ secrets.DB_BUILD_PASSWORD }} migrate
+          ./flyway -url="jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" -user="${{ secrets.DB_BUILD_USERNAME }}" -password="${{ secrets.DB_BUILD_PASSWORD }}" migrate
