@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main 
- 
+
 jobs:
   flyway_migration:
     runs-on: self-hosted
@@ -49,7 +49,7 @@ jobs:
 
       - name: Copy migration Files from Git to Flyway Folder
         run: |
-          git clone "${{secrets.SSH_REPO}}" /flywaymigrationtesting
+          git clone "${{secrets.SSH_REPO}}" 
           cp -r /flywaymigrationtesting/sql/* /opt/flyway/sql/
 
       - name: Run Flyway Info
