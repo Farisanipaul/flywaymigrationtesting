@@ -1,7 +1,7 @@
 name: Flyway Migration
 
 on:
-  push:
+  push: 
     branches:
       - main
 
